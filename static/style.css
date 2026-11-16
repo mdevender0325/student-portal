@@ -1,0 +1,285 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #080f20;
+    font-family: Arial, sans-serif;
+    color: #f1f5f9;
+    padding: 13px 3px;
+}
+
+/* Main Portal */
+
+.portal {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 16px;
+    background: #111d35;
+    border-radius: 25px;
+    animation: fadeIn 0.7s ease;
+}
+
+/* Top Section */
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    color: #8baaff;
+}
+
+.live {
+    background: #103d3b;
+    color: #00d68f;
+    padding: 5px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Header */
+
+header {
+    text-align: center;
+    margin: 22px 0;
+}
+
+header h1 {
+    font-size: 25px;
+    margin-bottom: 18px;
+}
+
+header p {
+    color: #aebbd0;
+    font-size: 14px;
+}
+
+/* Form */
+
+.form-group {
+    margin-bottom: 21px;
+}
+
+label {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 9px;
+}
+
+select,
+textarea {
+    width: 100%;
+    border: 1px solid #40506b;
+    border-radius: 25px;
+    background: #111d35;
+    color: white;
+    padding: 14px 20px;
+    font-size: 16px;
+    outline: none;
+    font-family: inherit;
+    transition: 0.3s;
+}
+
+select {
+    cursor: pointer;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 70px;
+    border-radius: 16px;
+    line-height: 1.6;
+}
+
+select:focus,
+textarea:focus {
+    border-color: #078cff;
+    box-shadow: 0 0 0 3px rgba(0,140,255,0.12);
+}
+
+textarea::placeholder {
+    color: #8997ad;
+}
+
+small {
+    display: block;
+    color: #9cabc1;
+    margin: 8px 4px 0;
+    font-size: 12px;
+}
+
+/* Results Heading */
+
+.result-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0 10px;
+}
+
+.result-heading span {
+    color: #55e4b0;
+    font-size: 13px;
+}
+
+/* Student Results */
+
+.results {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.empty {
+    background: #263750;
+    color: #aebbd0;
+    padding: 20px;
+    border-radius: 14px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.student-result {
+    background: #263750;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid #42e5b2;
+    animation: slideIn 0.35s ease;
+}
+
+.student-info strong {
+    color: #4ce5ad;
+    font-size: 16px;
+}
+
+.student-info p {
+    color: #b8c5d8;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.student-status {
+    color: #40dfaa;
+    font-size: 12px;
+}
+
+.not-found {
+    border-left-color: #ff657b;
+}
+
+.not-found strong {
+    color: #ff7487;
+}
+
+/* Copy Button */
+
+button {
+    width: 100%;
+    background: #078cff;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover:not(:disabled) {
+    background: #006bd1;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,140,255,0.2);
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Message */
+
+#message {
+    color: #4ce5ad;
+    margin-top: 15px;
+    font-size: 14px;
+    min-height: 18px;
+}
+
+/* Footer */
+
+footer {
+    border-top: 1px solid #40506b;
+    margin-top: 25px;
+    padding-top: 25px;
+    color: #aebbd0;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Animations */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Mobile Responsive */
+
+@media(max-width: 500px) {
+
+    .portal {
+        padding: 14px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+    select,
+    textarea {
+        font-size: 14px;
+    }
+}

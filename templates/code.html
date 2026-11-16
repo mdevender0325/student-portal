@@ -1,0 +1,164 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Details Portal</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+
+<div class="portal">
+
+    <!-- Top Section -->
+
+    <div class="top">
+        <div class="logo">🎓</div>
+        <span class="live">Live Demo</span>
+    </div>
+
+    <!-- Heading -->
+
+    <header>
+        <h1>Student Details</h1>
+        <p>Student Attendance Management</p>
+    </header>
+
+    <!-- Student Search Form -->
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Division -->
+
+        <div class="form-group">
+
+            <label for="division">Select Division</label>
+
+            <select id="division" name="division" required>
+                <option value="E" {% if selected_division == "E" %}selected{% endif %}>
+                    Division E
+                </option>
+
+                <option value="F" {% if selected_division == "F" %}selected{% endif %}>
+                    Division F
+                </option>
+            </select>
+
+        </div>
+
+        <!-- Multiple Roll Numbers -->
+
+        <div class="form-group">
+
+            <label for="rollNumbers">Enter Roll Numbers</label>
+
+            <textarea
+                id="rollNumbers"
+                name="roll_numbers"
+                rows="2"
+                placeholder="Enter roll numbers: 101, 102, 103"
+                required
+            >{{ entered_roll_numbers }}</textarea>
+
+            <small>
+                Enter multiple roll numbers separated by commas or spaces.
+            </small>
+
+        </div>
+
+        <button type="submit">Find Students</button>
+
+    </form>
+
+    <!-- Student Results -->
+
+    <div class="result-heading">
+        <label>Student Names</label>
+        <span id="count">{{ allstudents|length }} Students</span>
+    </div>
+
+    <div id="results" class="results">
+
+        {% for student in allstudents %}
+
+            <div class="student-card">
+
+                <h3>{{ student.name }}</h3>
+
+                <p>Roll Number: {{ student.Roll_number }}</p>
+
+                <p>Division: {{ student.division }}</p>
+
+            </div>
+
+        {% empty %}
+
+            <div class="empty">
+                Student names will appear here.
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <!-- Copy Names Button -->
+
+    <button
+        id="copyButton"
+        type="button"
+        {% if not allstudents %}disabled{% endif %}
+    >
+        ▢ Copy All Names
+    </button>
+
+    <p id="message"></p>
+
+    <!-- Footer -->
+
+    <footer>
+        Student Attendance Management System
+    </footer>
+
+</div>
+
+<!-- JavaScript -->
+
+<script>
+    document.getElementById("copyButton").addEventListener("click", function () {
+
+        const studentCards = document.querySelectorAll(".student-card");
+
+        let names = [];
+
+        studentCards.forEach(function(card) {
+            const name = card.querySelector("h3").innerText;
+            names.push(name);
+        });
+
+        if (names.length === 0) {
+            document.getElementById("message").innerText =
+                "No student names available!";
+            return;
+        }
+
+        navigator.clipboard.writeText(names.join("\n"))
+            .then(function() {
+                document.getElementById("message").innerText =
+                    "Student names copied successfully!";
+            })
+            .catch(function() {
+                document.getElementById("message").innerText =
+                    "Unable to copy names.";
+            });
+
+    });
+</script>
+
+</body>
+</html>
